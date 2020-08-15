@@ -1,3 +1,6 @@
+//receive 2 arguement
+//argv[1] : path of file to be transfered
+
 #include "server.h"
 #include "/xmuduo/muduo/net/EventLoop.h"
 #include "/xmuduo/muduo/net/InetAddress.h"
