@@ -62,6 +62,7 @@ void DownloadServer::writeCompleteCallback(const muduo::net::TcpConnectionPtr& c
 	else
 	{
 		conn->shutdown();
+		LOG_INFO << "shutdown here";
 	}	
 }
 
