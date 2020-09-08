@@ -6,6 +6,7 @@
 
 #include <netdb.h>
 #include <stdio.h>
+#include <arpa/inet.h>
 
 namespace po = boost::program_options;
 
@@ -57,18 +58,18 @@ bool parseCommandLine(int argc,char* argv[],Options* opt)
 
 struct sockaddr_in resolveOrDie(const char* host,uint16_t port)
 {
-	struct hostent* he = ::gethostbyname(host);//get address from name of host
-	if(!he)
-	{
-		perror("gethostbyname");
-		exit(1);
-	}
+	//struct hostent* he = ::gethostbyname(host);//get address from name of host
+	//if(!he)
+	//{
+		//perror("gethostbyname");
+		//exit(1);
+	//}
 
-	assert(he->h_addrtype == AF_INET && he->h_length == sizeof(uint32_t));
+	//assert(he->h_addrtype == AF_INET && he->h_length == sizeof(uint32_t));
 	struct sockaddr_in addr;
 	bzero(&addr,sizeof(addr));
 	addr.sin_family = AF_INET;
 	addr.sin_port = htons(port);
-	addr.sin_addr = *reinterpret_cast<struct in_addr*>(he->h_addr);
+	inet_pton(AF_INET,host,&(addr.sin_addr.s_addr));//*reinterpret_cast<struct in_addr*>(he->h_addr);
 	return addr;
 }
