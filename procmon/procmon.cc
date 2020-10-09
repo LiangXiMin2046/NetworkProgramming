@@ -208,7 +208,6 @@ private:
 		muduo::string content = readProcFile("stat");
 		size_t pos = content.find(')');
 		content = content.substr(pos+1);
-		std::cout << content << "content" << content.size() << std::endl;
 		statData.parse(content.c_str(),kbPerPage_);
 
 		appendTableRow("PID",pid);
