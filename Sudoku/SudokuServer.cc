@@ -57,7 +57,7 @@ std::string SudokuServer::solve(const std::string& data)
 	SudokuSolver solver;	
 	calResult = solver.solve(data.substr(pos+1));
 	if(calResult.empty())
-		result += "No solution";
+		result += "No solution\r\n";
 	else
 		result += calResult;
 	return result;
